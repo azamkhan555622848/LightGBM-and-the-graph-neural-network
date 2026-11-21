@@ -1,0 +1,6 @@
+label,Score,± std,macro-F1,micro-F1,open_pr,open_issue,issue_comment,pr_review,pr_review_comment,push,weeks
+"Hetero GraphSAGE, mean aggregation",31.3,2.5,31.5,31.1,35.2,36.9,31.7,34.4,25.8,24.8,3
++ mean & sum aggregation (counts),36.7,2.7,36.7,36.6,41.3,40.7,37.0,40.2,31.2,30.0,3
++ user→repo shortcut edges,36.3,2.4,36.5,36.1,40.8,40.5,37.2,39.6,32.5,28.4,3
+   same with 1 layer (1 hop),35.6,3.4,35.7,35.5,40.5,39.9,34.3,38.9,31.3,29.0,3
++ shortcuts + global context,36.7,2.8,37.1,36.3,41.6,40.8,38.0,39.5,33.6,29.3,3

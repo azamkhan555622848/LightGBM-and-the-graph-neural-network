@@ -1,0 +1,13 @@
+{
+ "push_rate_sep": 57,
+ "push_rate_th": 4.5,
+ "push_rate_va": 9.1,
+ "n_selected": 17,
+ "n_pos": 406,
+ "threshold": 0.5879107341990922,
+ "f1_threshold": 0.07092198581560284,
+ "f1_best": 0.4297872340425532,
+ "ens_push_threshold": 0.1189931350114416,
+ "ens_push_count": 0.3627118644067796,
+ "global_gain_push": 18.04928528397439
+}

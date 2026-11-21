@@ -1,0 +1,348 @@
+{
+ "student_id": "413540002",
+ "name": "Azam Khan",
+ "repo": "https://github.com/azamkhan555622848/LightGBM-and-the-graph-neural-network",
+ "stats": {
+  "push_per_day_oct": 2436,
+  "push_per_day_nov": 75,
+  "push_rate_sep": 57,
+  "push_rate_nov": "5–9",
+  "copy_ref_ours": "50.0"
+ },
+ "history": {
+  "sep22": "TBD",
+  "oct1": "TBD",
+  "oct15": "TBD"
+ },
+ "table_rows": "TBD",
+ "q2_extra": [
+  "q2_gnn",
+  "q2_features"
+ ],
+ "q3_extra": [
+  "q3_features",
+  "q3_shift",
+  "q3_results"
+ ],
+ "q2_gnn_text": [
+  "TBD"
+ ],
+ "q2_gnn_caption": [
+  "TBD"
+ ],
+ "q2_feat_text": [
+  "TBD"
+ ],
+ "q2_feat_caption": [
+  "TBD"
+ ],
+ "q3_sampling_text": [
+  [
+   "**Prediction times:** one per day at 16:00 UTC (= 00:00 Taiwan, the hour the test week starts); 52 labelled times (Sep 22 → Nov 12) × 4,465 test users = 232,180 training rows. More rows, and every weekday is a start day.",
+   {
+    "size": 11,
+    "space_after": 3
+   }
+  ],
+  [
+   "**Row-time rule:** at cut-off c a row is used only if its row time < c (first_seen_at for Users, Repositories, PullRequests, Issues, PRReviews; created_at for the comment and push tables). PRs, issues and reviews are never filtered by created_at / submitted_at.",
+   {
+    "size": 11,
+    "space_after": 3
+   }
+  ],
+  [
+   "**Known-only-later columns** (merged_at, merged_by_id, closed_at, state_reason, dismissed_at) count only if their value < c.",
+   {
+    "size": 11,
+    "space_after": 3
+   }
+  ],
+  [
+   "**Feature gap:** our final data ends 11 h before the test week (GH Archive lag; we must run before the deadline). Every training row gets the same gap: features from rows before t − 11 h, labels in [t, t + 7 d).",
+   {
+    "size": 11,
+    "space_after": 3
+   }
+  ],
+  [
+   "**Split by time:** for a validation week starting tv we train on t ≤ tv − 14 d and pick thresholds on t = tv − 7 d — the same recipe as the final run.",
+   {
+    "size": 11
+   }
+  ]
+ ],
+ "q3_feat_left": [
+  [
+   "LightGBM: 70 temporal + 12 global features",
+   {
+    "bold": true,
+    "size": 12,
+    "space_after": 4
+   }
+  ],
+  [
+   "**Multi-scale windows:** counts in the last 1, 3, 7, 14, 28, 56 days × 6 activities (36)",
+   {
+    "size": 11,
+    "space_after": 3
+   }
+  ],
+  [
+   "**Exponential decay:** Σ 0.5^(age / h), half-life h = 2, 7, 21 days × 6 (18) — recent actions weigh more",
+   {
+    "size": 11,
+    "space_after": 3
+   }
+  ],
+  [
+   "**Recency:** days since the last action of each kind and of any kind (7)",
+   {
+    "size": 11,
+    "space_after": 3
+   }
+  ],
+  [
+   "**Rhythm:** days since first action, active days in 7/28/84 d, active weeks of 12, trend (7 d vs 28 d rate), mean gap between active days, weekend share (Taiwan time), number of kinds in 28 d (9)",
+   {
+    "size": 11,
+    "space_after": 3
+   }
+  ],
+  [
+   "**Global volume (12):** cohort-wide 7-day count of each activity and its 7 d / 28 d ratio → how complete the recent data is",
+   {
+    "size": 11
+   }
+  ]
+ ],
+ "q3_feat_right": [
+  [
+   "GNN: time inside the graph",
+   {
+    "bold": true,
+    "size": 12,
+    "space_after": 4
+   }
+  ],
+  [
+   "**Temporal sampling:** the graph at cut-off c holds only rows with row time < c; event rows (comments, reviews, review comments, pushes) only from the last **56 days**.",
+   {
+    "size": 11,
+    "space_after": 3
+   }
+  ],
+  [
+   "**Relative-time encoding** of every node from its age a = c − row time (days):",
+   {
+    "size": 11,
+    "space_after": 2
+   }
+  ],
+  [
+   "none",
+   {
+    "level": 2,
+    "size": 10.5
+   }
+  ],
+  [
+   "sincos: [log(1+a), sin, cos(2πa / P), P = 1, 7, 28 d]",
+   {
+    "level": 2,
+    "size": 10.5
+   }
+  ],
+  [
+   "bucket: [log(1+a), one-hot of 0–1, 1–3, 3–7, 7–14, 14–28, 28–56, > 56 d] — with sum aggregation the GNN can learn windowed counts",
+   {
+    "level": 2,
+    "size": 10.5,
+    "space_after": 3
+   }
+  ],
+  [
+   "**Global context:** the 12 volume features of the snapshot are appended to every user embedding before the output layer.",
+   {
+    "size": 11
+   }
+  ]
+ ],
+ "q3_shift_text": [
+  "TBD"
+ ],
+ "q3_shift_bottom": [
+  "TBD"
+ ],
+ "q3_rows": [],
+ "q3_results_text": [
+  "TBD"
+ ],
+ "q4_fw_text": [
+  [
+   "Design choices",
+   {
+    "bold": true,
+    "size": 12,
+    "space_after": 4
+   }
+  ],
+  [
+   "**One sample = (user, day)**: from about 50 past days the model learns how the next 7 days follow from the history before the cut-off.",
+   {
+    "size": 10.5,
+    "space_after": 3
+   }
+  ],
+  [
+   "**Two relational learners**: LightGBM on 112 hand-built relational-temporal features, and a GNN that learns directly on the 8-table graph. Different errors → averaging helps.",
+   {
+    "size": 10.5,
+    "space_after": 3
+   }
+  ],
+  [
+   "**Robust decision**: rank users and keep the number of positives found best on the last labelled week (coverage of GH Archive changes from week to week).",
+   {
+    "size": 10.5,
+    "space_after": 3
+   }
+  ],
+  [
+   "**Reproducible**: one script, fixed seeds, deterministic LightGBM, CPU only.",
+   {
+    "size": 10.5
+   }
+  ]
+ ],
+ "q4_steps": [
+  [
+   "**① Download** (fetch_gharchive.sh) — 1,613 GH Archive hour files, 2026-09-15 00:00 → 2026-11-21 04:00 UTC.",
+   {
+    "size": 10.5,
+    "space_after": 3
+   }
+  ],
+  [
+   "**② Tables** (course scripts/preprocess.py, unchanged) — 8 anonymized Parquet tables of the 9,000 cohort users.",
+   {
+    "size": 10.5,
+    "space_after": 3
+   }
+  ],
+  [
+   "**③ Activity log** (src/features.py) — one row per action of a cohort user: kind (6 activities + merges), event time, row time, repository / PR / issue, and the author of the item acted on.",
+   {
+    "size": 10.5,
+    "space_after": 3
+   }
+  ],
+  [
+   "**④ Snapshots** (src/dataset.py) — prediction time t every day at 16:00 UTC from Sep 22; cut-off t − 11 h; 112 features + 6 labels for each of the 4,465 test users → 232,180 labelled rows; the test row at t = Nov 21 16:00 UTC (00:00 Nov 22, Taiwan).",
+   {
+    "size": 10.5,
+    "space_after": 3
+   }
+  ],
+  [
+   "**⑤ LightGBM** (src/models.py) — 6 binary models, 400 trees, learning rate 0.03, 31 leaves; trained on the snapshots up to Nov 6 (labels end before the last labelled week); 3 seeds.",
+   {
+    "size": 10.5,
+    "space_after": 3
+   }
+  ],
+  [
+   "**⑥ GNN** (src/gnn.py, src/train_gnn.py) — one graph per snapshot (rows before the cut-off, events of the last 56 days); 2-layer heterogeneous GraphSAGE, 64 hidden units, mean + sum aggregation, residual + LayerNorm; weighted BCE, AdamW, 12 epochs over the 46 daily snapshot graphs (Sep 22 → Nov 6); 3 seeds.",
+   {
+    "size": 10.5,
+    "space_after": 3
+   }
+  ],
+  [
+   "**⑦ Decision** (src/predict.py) — average the probabilities; on the last labelled week (Nov 13 → 20) the F1-best threshold selects n_k users per activity; in the test week the n_k most likely users get 1.",
+   {
+    "size": 10.5,
+    "space_after": 3
+   }
+  ],
+  [
+   "**⑧ Output** — output_413540002.csv (4,465 rows × 6 activities) checked with the course's scripts/evaluate.py. All steps: ./run_all.sh 413540002 (CPU only).",
+   {
+    "size": 10.5
+   }
+  ]
+ ],
+ "q4_rows": [],
+ "q4_results_text": [
+  [
+   "Validation: 3 non-overlapping weeks (starting Oct 30, Nov 6, Nov 13, 00:00 Taiwan). For each week tv: train on t ≤ tv − 14 d, choose n_k on tv − 7 d, score tv — the same recipe as the final run; Score from the course's evaluate.py.",
+   {
+    "size": 10,
+    "space_after": 3
+   }
+  ],
+  [
+   "The final average beats LightGBM in all 3 weeks; push and pr_review_comment stay the hardest because GH Archive keeps only a small, changing part of these events.",
+   {
+    "size": 10
+   }
+  ]
+ ],
+ "conclusions": [
+  "TBD"
+ ],
+ "limitations": [
+  [
+   "Limitations",
+   {
+    "bold": true,
+    "size": 13,
+    "space_after": 4
+   }
+  ],
+  [
+   "**Missing data**: GH Archive lost most events after mid-October; labels in the test week depend on which hours GH Archive keeps, which no model can know.",
+   {
+    "size": 11,
+    "space_after": 3
+   }
+  ],
+  [
+   "**Few validation weeks** (3): differences below ~2 points are within week-to-week noise; we report mean ± std and the per-week direction.",
+   {
+    "size": 11,
+    "space_after": 3
+   }
+  ],
+  [
+   "**Text is masked** (letters → a): only text lengths are usable.",
+   {
+    "size": 11,
+    "space_after": 3
+   }
+  ],
+  [
+   "**CPU-only GNN**: full-batch training on 46 snapshot graphs; tiny floating-point differences across machines can flip a few borderline users.",
+   {
+    "size": 11
+   }
+  ]
+ ],
+ "notes": {
+  "1": "Hello, I am <name>, student ID 413540002. This is my Assignment 2: predicting which of six GitHub activities each test user will do in the week of November 22 to 29. All code is in the public repository shown here; one script reproduces the submitted file.",
+  "2": "The task: for 4,465 test users we output six 0/1 labels. The score is the mean of macro-F1 and micro-F1. We may only use the 8 tables built by the course script.\nThree things we learned from the data before modelling. First, GH Archive has lost most of its data since mid-October: pushes of the cohort fell from about 2,400 per day in early October to about 75 per day in November. The test week will look like November, so the model must cope with a changing data volume. Second, we checked our label definitions: copying last week on the TAs' reference week gives 50.0 percent, the TAs report 49.61. Third, positives are rare in November, a few percent per activity, so F1 thresholds matter.",
+  "3": "Question 1. Each of the 8 tables is a node; each foreign key is an edge from the foreign-key column to the primary key it references; there are 20 of them. Primary keys are row numbers. I also mark the row-time column of every table, because that column decides from when a row may be used: first_seen_at for users, repositories, pull requests, issues and reviews, created_at for comments and pushes.",
+  "4": "The time period: GH Archive hour files from September 15, 00:00 UTC, to November 21, 04:00 UTC, which is noon of the deadline day in Taiwan: 1,613 files, 67 days. The bars show how the period is used: daily training prediction times from September 22, the last labelled week for thresholds, the three validation weeks of the experiments, an 11-hour gap, and the test week. Why this period: the features look back up to 56 days, and more training history helped even though the data volume changed; the numbers are on the slide.",
+  "q3a": "Question 3, temporal information. The first and most important part is how samples are made. One prediction time per day at 00:00 Taiwan, the same hour as the test week. For each time, features use only rows whose row time is before the cut-off, and columns like merged_at or closed_at only when their value is before the cut-off. Labels are the six activities in the next 7 days. Because our final data stops 11 hours before the test week, every training sample has the same 11-hour gap. Validation is split by time with exactly the recipe of the final run.",
+  "q3b": "On the left, the temporal features of LightGBM: counts in six windows from 1 to 56 days, exponentially decayed counts with half-lives of 2, 7 and 21 days, recency, and the rhythm of activity, plus 12 global volume features. On the right, time inside the GNN: the graph only contains rows visible at the cut-off and events of the last 56 days, every node gets an encoding of its age, and the global volume vector is given to the output layer. We compared no encoding, a sinusoidal encoding and an age-bucket encoding.",
+  "q2a": "Question 2, relationships across tables. I model relationships in two complementary ways. A: relational deep learning. Every row of every table becomes a node and every foreign key an edge, so the 8 tables become one heterogeneous graph with 8 node types and 17 foreign-key edge types plus their reverse. A graph neural network passes messages along these edges, so the embedding of a user can see the user's own rows and, at two hops, other users' rows on the same pull requests, issues and repositories. B: relational features for LightGBM: the same paths computed with joins and aggregations, 30 features. The figure shows the paths: for example, a review on my pull request by another user often triggers a push or a reply by me.",
+  "q2b": "How we improved the graph model. The first version used mean aggregation, as in a default GraphSAGE. Mean aggregation cannot count: a user with ten pushes and a user with one push get the same message. Adding sum aggregation next to the mean fixes this and was the largest single improvement, in every validation week. Two message-passing hops are better than one, so the relations of relations matter. Derived user-to-repository shortcut edges and the global context did not help beyond noise, so the final GNN uses the plain foreign-key graph.",
+  "q2c": "Our hand-built relational features follow the same foreign-key paths: the repositories a user works in, the user's open pull requests and issues, other users' reviews and comments on them, and the collaborators' activity. The trees do use them, about 14 percent of the split gain, but they do not improve the held-out results, neither the score nor the threshold-free average precision. This is a negative result we report. A likely reason: in a week only about five percent of the test users act, and the signal that others act on my items mostly concerns users who are already active, so their own history already carries it. What does help is learning directly on the graph, as on the previous slide, and combining the graph model with the feature model: the average is better than LightGBM in all three weeks.",
+  "q3c": "The second temporal problem is that the data is not stationary. GH Archive keeps a different share of events every week, push especially. A probability threshold tuned on one week therefore fails in the next: on the week of November 12 the push threshold from the week before selected only a handful of users, although several hundred pushed, and the ranking itself was good. Our fix is a rank-based decision: we keep the number of positives that was best on the last labelled week and give 1 to the users with the highest probabilities. Training on a long sliding history across the drop and giving the model global volume features also help.",
+  "q3d": "This table collects the temporal ablations on the same three weeks. Learning from history beats copying last week; global volume context and a longer training history give the largest gains; the rank-based decision helps the ensemble. Several ideas gave no gain: decayed counts and recency features over plain window counts, time encodings in the GNN, the 56-day window, and aligning the 11-hour gap. In this data, how much a user did recently matters more than exactly when, and our GNN already sums over a graph that contains only past rows. RelBench samples only a few neighbours per node, so there the time encoding is needed.",
+  "q4a": "Question 4, the framework. From top to bottom: the GH Archive hour files of our period, the course preprocessing script, the 8 tables. Then time-aware sampling makes one sample per user and day. Two relational learners run in parallel: LightGBM on the relational-temporal features and the heterogeneous GNN on the snapshot graph. Their probabilities are averaged, and a rank-based decision turns them into the 0/1 output file.",
+  "q4b": "The pipeline step by step, with the file that implements each step. One script, run_all.sh, runs everything from download to the format check, on CPU only.",
+  "q4c": "Results on the three validation weeks with the same recipe as the final run. Both learned models beat copying last week by about four points, LightGBM and the GNN are equally good, and their average with the rank-based decision is the best. push and pr_review_comment remain the hardest activities because GH Archive keeps only a small, changing part of these events.",
+  "end": "To conclude: our final model clearly beats copying last week on three held-out weeks. For relationships, a graph neural network on the foreign-key graph works when its aggregation can count, two hops beat one, and combining the graph model with the feature model is best; hand-built relational features were redundant. For time, leakage-safe daily snapshots, a long training history, global volume context and a rank-based decision were the important parts. The main limitation is the missing data in GH Archive itself. Thank you."
+ }
+}

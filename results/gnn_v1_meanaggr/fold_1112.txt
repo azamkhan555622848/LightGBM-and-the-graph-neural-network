@@ -1,0 +1,4 @@
+11-12 gnn_time_shortcuts           score 0.3134  macro 0.3084  micro 0.3185  open_pr 0.357 open_iss 0.379 issue_co 0.310 pr_revie 0.302 pr_revie 0.255 push 0.247  (1039s)
+11-12 gnn_notime                   score 0.3334  macro 0.3260  micro 0.3409  open_pr 0.368 open_iss 0.374 issue_co 0.325 pr_revie 0.313 pr_revie 0.231 push 0.344  (973s)
+11-12 gnn_time                     score 0.3055  macro 0.2997  micro 0.3113  open_pr 0.360 open_iss 0.373 issue_co 0.269 pr_revie 0.321 pr_revie 0.246 push 0.229  (988s)
+11-12 gnn_time_shortcuts_feats     score 0.3539  macro 0.3457  micro 0.3620  open_pr 0.403 open_iss 0.440 issue_co 0.417 pr_revie 0.390 pr_revie 0.250 push 0.175  (1041s)

@@ -1,0 +1,109 @@
+val_t,activity,group,gain_share
+2026-10-29 16:00:00,open_pr,global (data volume),0.035839179156498
+2026-10-29 16:00:00,open_pr,relational,0.1532576312931461
+2026-10-29 16:00:00,open_pr,temporal: activity pattern,0.13131020209824343
+2026-10-29 16:00:00,open_pr,temporal: decayed counts,0.5177166523268371
+2026-10-29 16:00:00,open_pr,temporal: recency,0.055253279544980355
+2026-10-29 16:00:00,open_pr,temporal: window counts,0.10662305558029508
+2026-10-29 16:00:00,open_issue,global (data volume),0.028560423938491897
+2026-10-29 16:00:00,open_issue,relational,0.14265723267789743
+2026-10-29 16:00:00,open_issue,temporal: activity pattern,0.10506357022588865
+2026-10-29 16:00:00,open_issue,temporal: decayed counts,0.5408504698688887
+2026-10-29 16:00:00,open_issue,temporal: recency,0.08396409112449854
+2026-10-29 16:00:00,open_issue,temporal: window counts,0.09890421216433469
+2026-10-29 16:00:00,issue_comment,global (data volume),0.04101622387414633
+2026-10-29 16:00:00,issue_comment,relational,0.15632715425036603
+2026-10-29 16:00:00,issue_comment,temporal: activity pattern,0.12786277820820108
+2026-10-29 16:00:00,issue_comment,temporal: decayed counts,0.4132134955287736
+2026-10-29 16:00:00,issue_comment,temporal: recency,0.08066293048015696
+2026-10-29 16:00:00,issue_comment,temporal: window counts,0.18091741765835595
+2026-10-29 16:00:00,pr_review,global (data volume),0.030776853035747533
+2026-10-29 16:00:00,pr_review,relational,0.1520083559530996
+2026-10-29 16:00:00,pr_review,temporal: activity pattern,0.09938525068439927
+2026-10-29 16:00:00,pr_review,temporal: decayed counts,0.5262717188805952
+2026-10-29 16:00:00,pr_review,temporal: recency,0.08744567240800995
+2026-10-29 16:00:00,pr_review,temporal: window counts,0.10411214903814844
+2026-10-29 16:00:00,pr_review_comment,global (data volume),0.03786856710966358
+2026-10-29 16:00:00,pr_review_comment,relational,0.13900702546893948
+2026-10-29 16:00:00,pr_review_comment,temporal: activity pattern,0.10137224108165115
+2026-10-29 16:00:00,pr_review_comment,temporal: decayed counts,0.49142461863632797
+2026-10-29 16:00:00,pr_review_comment,temporal: recency,0.10076477448109404
+2026-10-29 16:00:00,pr_review_comment,temporal: window counts,0.1295627732223238
+2026-10-29 16:00:00,push,global (data volume),0.0912013626199065
+2026-10-29 16:00:00,push,relational,0.10228686658384233
+2026-10-29 16:00:00,push,temporal: activity pattern,0.33401966975978353
+2026-10-29 16:00:00,push,temporal: decayed counts,0.3011332265297729
+2026-10-29 16:00:00,push,temporal: recency,0.09340191573104563
+2026-10-29 16:00:00,push,temporal: window counts,0.07795695877564907
+2026-11-05 16:00:00,open_pr,global (data volume),0.03988477344145567
+2026-11-05 16:00:00,open_pr,relational,0.13699735509020958
+2026-11-05 16:00:00,open_pr,temporal: activity pattern,0.13994422503375678
+2026-11-05 16:00:00,open_pr,temporal: decayed counts,0.5285430495564829
+2026-11-05 16:00:00,open_pr,temporal: recency,0.056482943639584934
+2026-11-05 16:00:00,open_pr,temporal: window counts,0.09814765323851009
+2026-11-05 16:00:00,open_issue,global (data volume),0.03164971100002511
+2026-11-05 16:00:00,open_issue,relational,0.1285819254816087
+2026-11-05 16:00:00,open_issue,temporal: activity pattern,0.10881042599985913
+2026-11-05 16:00:00,open_issue,temporal: decayed counts,0.572473273052458
+2026-11-05 16:00:00,open_issue,temporal: recency,0.06878578030047813
+2026-11-05 16:00:00,open_issue,temporal: window counts,0.08969888416557095
+2026-11-05 16:00:00,issue_comment,global (data volume),0.04988115087620626
+2026-11-05 16:00:00,issue_comment,relational,0.14554287953177056
+2026-11-05 16:00:00,issue_comment,temporal: activity pattern,0.12236509350837887
+2026-11-05 16:00:00,issue_comment,temporal: decayed counts,0.41106547032522484
+2026-11-05 16:00:00,issue_comment,temporal: recency,0.07115556485040621
+2026-11-05 16:00:00,issue_comment,temporal: window counts,0.19998984090801325
+2026-11-05 16:00:00,pr_review,global (data volume),0.03543343959034615
+2026-11-05 16:00:00,pr_review,relational,0.14604747106489077
+2026-11-05 16:00:00,pr_review,temporal: activity pattern,0.09478478453628425
+2026-11-05 16:00:00,pr_review,temporal: decayed counts,0.5399476594022564
+2026-11-05 16:00:00,pr_review,temporal: recency,0.08324679621633758
+2026-11-05 16:00:00,pr_review,temporal: window counts,0.10053984918988483
+2026-11-05 16:00:00,pr_review_comment,global (data volume),0.041498945846302995
+2026-11-05 16:00:00,pr_review_comment,relational,0.13539409561438226
+2026-11-05 16:00:00,pr_review_comment,temporal: activity pattern,0.09263776295300462
+2026-11-05 16:00:00,pr_review_comment,temporal: decayed counts,0.5162541163909172
+2026-11-05 16:00:00,pr_review_comment,temporal: recency,0.09566575551463524
+2026-11-05 16:00:00,pr_review_comment,temporal: window counts,0.11854932368075762
+2026-11-05 16:00:00,push,global (data volume),0.11323382786067548
+2026-11-05 16:00:00,push,relational,0.09214091932862215
+2026-11-05 16:00:00,push,temporal: activity pattern,0.26664845083484046
+2026-11-05 16:00:00,push,temporal: decayed counts,0.34646884045088144
+2026-11-05 16:00:00,push,temporal: recency,0.08388519984078342
+2026-11-05 16:00:00,push,temporal: window counts,0.09762276168419703
+2026-11-12 16:00:00,open_pr,global (data volume),0.038585113136367075
+2026-11-12 16:00:00,open_pr,relational,0.14136696268538657
+2026-11-12 16:00:00,open_pr,temporal: activity pattern,0.11577195721170058
+2026-11-12 16:00:00,open_pr,temporal: decayed counts,0.5509213756076815
+2026-11-12 16:00:00,open_pr,temporal: recency,0.05664115612789063
+2026-11-12 16:00:00,open_pr,temporal: window counts,0.09671343523097368
+2026-11-12 16:00:00,open_issue,global (data volume),0.03268758271340182
+2026-11-12 16:00:00,open_issue,relational,0.12374682045487737
+2026-11-12 16:00:00,open_issue,temporal: activity pattern,0.10117253441259183
+2026-11-12 16:00:00,open_issue,temporal: decayed counts,0.5633582711827605
+2026-11-12 16:00:00,open_issue,temporal: recency,0.08451500393320656
+2026-11-12 16:00:00,open_issue,temporal: window counts,0.09451978730316192
+2026-11-12 16:00:00,issue_comment,global (data volume),0.04614004427918191
+2026-11-12 16:00:00,issue_comment,relational,0.13582244977133057
+2026-11-12 16:00:00,issue_comment,temporal: activity pattern,0.11530630650831979
+2026-11-12 16:00:00,issue_comment,temporal: decayed counts,0.4124121630498106
+2026-11-12 16:00:00,issue_comment,temporal: recency,0.07899510125271408
+2026-11-12 16:00:00,issue_comment,temporal: window counts,0.21132393513864303
+2026-11-12 16:00:00,pr_review,global (data volume),0.03578660107911296
+2026-11-12 16:00:00,pr_review,relational,0.13889149209241422
+2026-11-12 16:00:00,pr_review,temporal: activity pattern,0.0934987638073101
+2026-11-12 16:00:00,pr_review,temporal: decayed counts,0.5352370652905349
+2026-11-12 16:00:00,pr_review,temporal: recency,0.06190225007722972
+2026-11-12 16:00:00,pr_review,temporal: window counts,0.13468382765339804
+2026-11-12 16:00:00,pr_review_comment,global (data volume),0.04879515542684062
+2026-11-12 16:00:00,pr_review_comment,relational,0.126308139698947
+2026-11-12 16:00:00,pr_review_comment,temporal: activity pattern,0.0892394530112397
+2026-11-12 16:00:00,pr_review_comment,temporal: decayed counts,0.5547206715263001
+2026-11-12 16:00:00,pr_review_comment,temporal: recency,0.06526278437606338
+2026-11-12 16:00:00,pr_review_comment,temporal: window counts,0.11567379596060914
+2026-11-12 16:00:00,push,global (data volume),0.3370433680386497
+2026-11-12 16:00:00,push,relational,0.0634493904026567
+2026-11-12 16:00:00,push,temporal: activity pattern,0.2211971125592852
+2026-11-12 16:00:00,push,temporal: decayed counts,0.25975346167718927
+2026-11-12 16:00:00,push,temporal: recency,0.04962253977441692
+2026-11-12 16:00:00,push,temporal: window counts,0.0689341275478022
