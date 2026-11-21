@@ -230,7 +230,7 @@
    }
   ],
   [
-   "**④ Snapshots** (src/dataset.py) — prediction time t every day at 16:00 UTC from Sep 22; cut-off t − 11 h; 112 features + 6 labels for each of the 4,465 test users → 232,180 labelled rows; the test row at t = Nov 21 16:00 UTC (00:00 Nov 22, Taiwan).",
+   "**④ Snapshots** (src/dataset.py) — prediction time t every day at 16:00 UTC from Sep 22; cut-off t − 11 h; 112 features + 6 labels for each of the 4,465 test users → 236,645 labelled rows (53 days); the test row at t = Nov 21 16:00 UTC (00:00 Nov 22, Taiwan).",
    {
     "size": 10.5,
     "space_after": 3
