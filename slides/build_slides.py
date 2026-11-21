@@ -62,7 +62,7 @@ def build():
     # 2 ------------------------------------------------------------ task & data
     s = d.slide(notes=CFG["notes"].get("2", ""))
     d.header(s, "Task, data and what we found first", underline=False)
-    st = CFG["stats"]
+    st = {**CFG["stats"], **json.loads((ROOT / "results" / "summary" / "volume_stats.json").read_text())}
     d.text(s, L(0.4), L(0.8), L(4.35), L(4.4), [
         ("**Task**: for 4,465 test users, predict 6 binary labels — open_pr, open_issue, issue_comment, "
          "pr_review, pr_review_comment, push — for **Nov 22–29, 2026 (Taiwan)**.", {"size": 12, "space_after": 4}),
@@ -103,7 +103,7 @@ def build():
     d.text(s, L(0.4), L(3.8), L(9.2), L(1.4), [
         ("**GH Archive hour files 2026-09-15 00:00 → 2026-11-21 04:00 UTC** (Taiwan 09-15 08:00 → 11-21 12:59): "
          "1,613 files, 67 days (the course allows data from 2025-12-01).", {"size": 12, "space_after": 3}),
-        ("Why: 56-day feature windows + 52 daily labelled times; **6–7 weeks of training history beat 4 weeks** "
+        ("Why: 56-day feature windows + 53 daily labelled times; **6–7 weeks of training history beat 4 weeks** "
          f"despite the data shift (LightGBM Score, training from Sep 22 **{v(q3, 'History: from Sep 22 (7 wk, ours)'):.1f}**, "
          f"Oct 1 {v(q3, 'History: train from Oct 1 (6 wk)'):.1f}, Oct 15 {v(q3, 'History: train from Oct 15 (4 wk)'):.1f}); "
          "data until noon of the deadline day so the pipeline can run before 23:55.", {"size": 12, "space_after": 3}),

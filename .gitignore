@@ -5,7 +5,6 @@ course-repo/
 .venv/
 __pycache__/
 *.pyc
-output_*.csv
 results/**/*.parquet
 slides/*.tmp
 raw_period/

@@ -3,6 +3,7 @@
     python src/figures.py --db data/db --results results --out figures
 """
 import argparse
+import json
 from pathlib import Path
 
 import matplotlib
@@ -38,6 +39,14 @@ def weekly_volume(db, out):
     fig.tight_layout()
     fig.savefig(Path(out) / "weekly_volume.png", dpi=160)
     day.to_csv(Path(out) / "daily_volume.csv")
+    # numbers quoted on slide 2: mean cohort pushes per UTC day, early October vs November (complete days)
+    last_full = (T["Pushes"].created_at.max().floor("D") - pd.Timedelta(days=1)).strftime("%Y-%m-%d")
+    stats = {"push_per_day_oct": round(day.push["2026-10-01":"2026-10-07"].mean()),
+             "push_per_day_nov": round(day.push["2026-11-01":last_full].mean()),
+             "nov_window": f"2026-11-01..{last_full}"}
+    (Path(__file__).resolve().parents[1] / "results" / "summary" / "volume_stats.json").write_text(
+        json.dumps(stats, indent=1))
+    print(stats)
 
 
 def ablation_bars(csvs, names, out, fname, title):

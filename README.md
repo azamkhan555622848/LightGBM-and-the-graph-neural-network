@@ -1,5 +1,7 @@
 # Predicting GitHub User Activity — Big Data Assignment 2 (413540002)
 
+Azam Khan · Student ID 413540002 · https://github.com/azamkhan555622848/LightGBM-and-the-graph-neural-network
+
 For each of the 4,465 test users, predict which of 6 activities (`open_pr`, `open_issue`,
 `issue_comment`, `pr_review`, `pr_review_comment`, `push`) the user performs during the test week
 **2026/11/22 00:00 – 11/29 00:00 (Taiwan time)**, using only the 8 relational tables built by the
