@@ -64,8 +64,8 @@ def build():
     d.header(s, "Task, data and what we found first", underline=False)
     st = {**CFG["stats"], **json.loads((ROOT / "results" / "summary" / "volume_stats.json").read_text())}
     d.text(s, L(0.4), L(0.8), L(4.35), L(4.4), [
-        ("**Task**: for 4,465 test users, predict 6 binary labels — open_pr, open_issue, issue_comment, "
-         "pr_review, pr_review_comment, push — for **Nov 22–29, 2026 (Taiwan)**.", {"size": 12, "space_after": 4}),
+        ("**Task**: for 4,465 test users, predict 6 binary labels (open_pr, open_issue, issue_comment, "
+         "pr_review, pr_review_comment, push) for **Nov 22–29, 2026 (Taiwan)**.", {"size": 12, "space_after": 4}),
         ("**Score** = (macro-F1 + micro-F1) / 2 over the 6 activities.", {"size": 12, "space_after": 4}),
         ("**Input**: only the 8 tables built by the course's preprocess.py (9,000 cohort users).",
          {"size": 12, "space_after": 8}),
@@ -93,7 +93,7 @@ def build():
 
     # 4 ------------------------------------------------------------ Q1 period
     s = d.slide(notes=CFG["notes"].get("4", ""))
-    d.header(s, "Question 1 (cont.) — dataset time period", underline=False)
+    d.header(s, "Question 1 (cont.): dataset time period", underline=False)
     d.image(s, FIG / "timeline.png", L(0.25), L(0.75), L(9.5), L(3.05))
     q3 = tab("q3")
     rows_db = {t: len(pd.read_parquet(ROOT / "data" / "db" / f"{t}.parquet", columns=[c]))
@@ -135,7 +135,7 @@ def q2_slides(d):
         ("**B. Relational features** for LightGBM: joins + aggregations along the same FK paths "
          "(30 features).", {"size": 11, "space_after": 4}),
         ("Paths used (left): u's own rows (1 hop) and **other users' rows on u's repositories, PRs and "
-         "issues** (2 hops) — e.g. a review on u's PR often triggers a push or a reply by u.", {"size": 11}),
+         "issues** (2 hops), e.g. a review on u's PR often triggers a push or a reply by u.", {"size": 11}),
     ], fill=LIGHT)
     q2_gnn(d)
     q2_features(d)
@@ -144,7 +144,7 @@ def q2_slides(d):
 def q2_gnn(d):
     L = Inches
     s = d.slide(notes=CFG["notes"].get("q2b", ""))
-    d.header(s, "Question 2 (cont.) — enhancing the relational GNN", underline=False)
+    d.header(s, "Question 2 (cont.): enhancing the relational GNN", underline=False)
     t = tab("q2_gnn")
     rows = [["GNN variant (all: no time encoding)", "Score", "± std", "macro-F1", "micro-F1"]]
     rows += [[i] + [fmt(t.loc[i, c]) for c in ("Score", "± std", "macro-F1", "micro-F1")] for i in t.index]
@@ -174,7 +174,7 @@ def q2_gnn(d):
 def q2_features(d):
     L = Inches
     s = d.slide(notes=CFG["notes"].get("q2c", ""))
-    d.header(s, "Question 2 (cont.) — relational features vs. the graph", underline=False)
+    d.header(s, "Question 2 (cont.): relational features vs. the graph", underline=False)
     lg, ap, fin = tab("q2_lgbm"), pd.read_csv(RES / "ap_table.csv", index_col=0), tab("final")
     rows = [["LightGBM features", "Score", "± std"]]
     rows += [[i, fmt(lg.loc[i, "Score"]), fmt(lg.loc[i, "± std"])] for i in lg.index]
@@ -205,7 +205,7 @@ def q2_features(d):
          "A negative result we report.", {"size": 10.5, "space_after": 3}),
         ("Likely reason: only 2–9% of test users do a given activity in a week, and the signal \"others act on my "
          "items\" mostly concerns users who are already active, so their own history carries it. Cold users have "
-         f"only {cold_min}–{cold_max} positives per activity and week — too few to learn from.", {"size": 10.5, "space_after": 3}),
+         f"only {cold_min}–{cold_max} positives per activity and week, too few to learn from.", {"size": 10.5, "space_after": 3}),
         (f"**What does help is learning on the graph and combining the two views**: GNN {v(fin, 'GNN (3 seeds)'):.1f}, "
          f"LightGBM {v(fin, 'LightGBM'):.1f}, average of both **{ens:.1f}** (better than LightGBM in all 3 weeks).",
          {"size": 10.5}),
@@ -227,7 +227,7 @@ def q3_slides(d):
 def q3_features(d):
     L = Inches
     s = d.slide(notes=CFG["notes"].get("q3b", ""))
-    d.header(s, "Question 3 (cont.) — temporal features and time encodings", underline=False)
+    d.header(s, "Question 3 (cont.): temporal features and time encodings", underline=False)
     d.text(s, L(0.4), L(0.75), L(4.6), L(2.9), CFG["q3_feat_left"], size=10.5, fill=LIGHT)
     d.text(s, L(5.15), L(0.75), L(4.5), L(2.9), CFG["q3_feat_right"], size=10.5, fill=LIGHT)
     d.image(s, FIG / "gain_share.png", L(0.4), L(3.55), L(6.4), L(1.8))
@@ -242,7 +242,7 @@ def q3_features(d):
 def q3_shift(d):
     L = Inches
     s = d.slide(notes=CFG["notes"].get("q3c", ""))
-    d.header(s, "Question 3 (cont.) — GH Archive coverage changes", underline=False)
+    d.header(s, "Question 3 (cont.): GH Archive coverage changes", underline=False)
     d.image(s, FIG / "weekly_volume.png", L(0.3), L(0.8), L(5.3), L(2.55))
     q3 = tab("q3")
     dg = json.loads((RES / "push_diag.json").read_text())
@@ -274,7 +274,7 @@ def q3_shift(d):
 def q3_results(d):
     L = Inches
     s = d.slide(notes=CFG["notes"].get("q3d", ""))
-    d.header(s, "Question 3 (cont.) — temporal ablations (3 validation weeks)", underline=False)
+    d.header(s, "Question 3 (cont.): temporal ablations (3 validation weeks)", underline=False)
     q3 = tab("q3")
     rows = [["Temporal design", "Score", "± std", "macro-F1", "micro-F1"]]
     rows += [[i] + [fmt(q3.loc[i, c]) for c in ("Score", "± std", "macro-F1", "micro-F1")] for i in q3.index]
@@ -315,11 +315,11 @@ def q4_slides(d):
     d.text(s, L(6.65), L(1.05), L(3.15), L(4.2), CFG["q4_fw_text"], size=10.5, fill=LIGHT)
 
     s = d.slide(notes=CFG["notes"].get("q4b", ""))
-    d.header(s, "Question 4 (cont.) — pipeline, step by step", underline=False)
+    d.header(s, "Question 4 (cont.): pipeline, step by step", underline=False)
     d.text(s, L(0.4), L(0.72), L(9.2), L(4.5), CFG["q4_steps"], size=10.5)
 
     s = d.slide(notes=CFG["notes"].get("q4c", ""))
-    d.header(s, "Question 4 (cont.) — results on 3 validation weeks", underline=False)
+    d.header(s, "Question 4 (cont.): results on 3 validation weeks", underline=False)
     fin = tab("final")
     rows = [["Model", "Score", "± std", "macro", "micro"] + [SHORT[k] for k in ACTS]]
     for i in fin.index:

@@ -58,7 +58,7 @@
    }
   ],
   [
-   "**Split by time:** for a validation week starting tv we train on t ≤ tv − 14 d and pick thresholds on t = tv − 7 d — the same recipe as the final run.",
+   "**Split by time:** for a validation week starting tv we train on t ≤ tv − 14 d and pick thresholds on t = tv − 7 d, the same recipe as the final run.",
    {
     "size": 11
    }
@@ -81,7 +81,7 @@
    }
   ],
   [
-   "**Exponential decay:** Σ 0.5^(age / h), half-life h = 2, 7, 21 days × 6 (18) — recent actions weigh more",
+   "**Exponential decay:** Σ 0.5^(age / h), half-life h = 2, 7, 21 days × 6 (18): recent actions weigh more",
    {
     "size": 11,
     "space_after": 3
@@ -146,7 +146,7 @@
    }
   ],
   [
-   "bucket: [log(1+a), one-hot of 0–1, 1–3, 3–7, 7–14, 14–28, 28–56, > 56 d] — with sum aggregation the GNN can learn windowed counts",
+   "bucket: [log(1+a), one-hot of 0–1, 1–3, 3–7, 7–14, 14–28, 28–56, > 56 d]; with sum aggregation the GNN can learn windowed counts",
    {
     "level": 2,
     "size": 10.5,
@@ -209,56 +209,56 @@
  ],
  "q4_steps": [
   [
-   "**① Download** (fetch_gharchive.sh) — 1,613 GH Archive hour files, 2026-09-15 00:00 → 2026-11-21 04:00 UTC.",
+   "**① Download** (fetch_gharchive.sh): 1,613 GH Archive hour files, 2026-09-15 00:00 → 2026-11-21 04:00 UTC.",
    {
     "size": 10.5,
     "space_after": 3
    }
   ],
   [
-   "**② Tables** (course scripts/preprocess.py, unchanged) — 8 anonymized Parquet tables of the 9,000 cohort users.",
+   "**② Tables** (course scripts/preprocess.py, unchanged): 8 anonymized Parquet tables of the 9,000 cohort users.",
    {
     "size": 10.5,
     "space_after": 3
    }
   ],
   [
-   "**③ Activity log** (src/features.py) — one row per action of a cohort user: kind (6 activities + merges), event time, row time, repository / PR / issue, and the author of the item acted on.",
+   "**③ Activity log** (src/features.py): one row per action of a cohort user: kind (6 activities + merges), event time, row time, repository / PR / issue, and the author of the item acted on.",
    {
     "size": 10.5,
     "space_after": 3
    }
   ],
   [
-   "**④ Snapshots** (src/dataset.py) — prediction time t every day at 16:00 UTC from Sep 22; cut-off t − 11 h; 112 features + 6 labels for each of the 4,465 test users → 236,645 labelled rows (53 days); the test row at t = Nov 21 16:00 UTC (00:00 Nov 22, Taiwan).",
+   "**④ Snapshots** (src/dataset.py): prediction time t every day at 16:00 UTC from Sep 22; cut-off t − 11 h; 112 features + 6 labels for each of the 4,465 test users → 236,645 labelled rows (53 days); the test row at t = Nov 21 16:00 UTC (00:00 Nov 22, Taiwan).",
    {
     "size": 10.5,
     "space_after": 3
    }
   ],
   [
-   "**⑤ LightGBM** (src/models.py) — 6 binary models, 400 trees, learning rate 0.03, 31 leaves; trained on the snapshots up to Nov 6 (labels end before the last labelled week); 3 seeds.",
+   "**⑤ LightGBM** (src/models.py): 6 binary models, 400 trees, learning rate 0.03, 31 leaves; trained on the snapshots up to Nov 6 (labels end before the last labelled week); 3 seeds.",
    {
     "size": 10.5,
     "space_after": 3
    }
   ],
   [
-   "**⑥ GNN** (src/gnn.py, src/train_gnn.py) — one graph per snapshot (rows before the cut-off, events of the last 56 days); 2-layer heterogeneous GraphSAGE, 64 hidden units, mean + sum aggregation, residual + LayerNorm; weighted BCE, AdamW, 12 epochs over the 46 daily snapshot graphs (Sep 22 → Nov 6); 3 seeds.",
+   "**⑥ GNN** (src/gnn.py, src/train_gnn.py): one graph per snapshot (rows before the cut-off, events of the last 56 days); 2-layer heterogeneous GraphSAGE, 64 hidden units, mean + sum aggregation, residual + LayerNorm; weighted BCE, AdamW, 12 epochs over the 46 daily snapshot graphs (Sep 22 → Nov 6); 3 seeds.",
    {
     "size": 10.5,
     "space_after": 3
    }
   ],
   [
-   "**⑦ Decision** (src/predict.py) — average the probabilities; on the last labelled week (Nov 13 → 20) the F1-best threshold selects n_k users per activity; in the test week the n_k most likely users get 1.",
+   "**⑦ Decision** (src/predict.py): average the probabilities; on the last labelled week (Nov 13 → 20) the F1-best threshold selects n_k users per activity; in the test week the n_k most likely users get 1.",
    {
     "size": 10.5,
     "space_after": 3
    }
   ],
   [
-   "**⑧ Output** — output_413540002.csv (4,465 rows × 6 activities) checked with the course's scripts/evaluate.py. All steps: ./run_all.sh 413540002 (CPU only).",
+   "**⑧ Output**; output_413540002.csv (4,465 rows × 6 activities) checked with the course's scripts/evaluate.py. All steps: ./run_all.sh 413540002 (CPU only).",
    {
     "size": 10.5
    }
@@ -267,7 +267,7 @@
  "q4_rows": [],
  "q4_results_text": [
   [
-   "Validation: 3 non-overlapping weeks (starting Oct 30, Nov 6, Nov 13, 00:00 Taiwan). For each week tv: train on t ≤ tv − 14 d, choose n_k on tv − 7 d, score tv — the same recipe as the final run; Score from the course's evaluate.py.",
+   "Validation: 3 non-overlapping weeks (starting Oct 30, Nov 6, Nov 13, 00:00 Taiwan). For each week tv: train on t ≤ tv − 14 d, choose n_k on tv − 7 d, score tv, the same recipe as the final run; Score from the course's evaluate.py.",
    {
     "size": 10,
     "space_after": 3
